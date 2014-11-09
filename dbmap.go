@@ -14,10 +14,10 @@ import (
 	"bytes"
 	"database/sql"
 	"fmt"
-	"log"
 	"reflect"
 	"strings"
 
+	"github.com/joefitzgerald/standardlog"
 	"github.com/jmoiron/sqlx"
 	"github.com/jmoiron/sqlx/reflectx"
 )
@@ -44,7 +44,7 @@ type DbMap struct {
 	Dialect Dialect
 
 	tables    []*TableMap
-	logger    *log.Logger
+	logger    standardlog.Logger
 	logPrefix string
 	mapper    *reflectx.Mapper
 }
@@ -66,7 +66,7 @@ func NewDbMap(db *sql.DB, dialect Dialect) *DbMap {
 //
 // Use TraceOn if you want to spy on the SQL statements that modl
 // generates.
-func (m *DbMap) TraceOn(prefix string, logger *log.Logger) {
+func (m *DbMap) TraceOn(prefix string, logger standardlog.Logger) {
 	m.logger = logger
 	if len(prefix) == 0 {
 		m.logPrefix = prefix
