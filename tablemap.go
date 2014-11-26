@@ -73,7 +73,7 @@ func (t *TableMap) ColMap(field string) *ColumnMap {
 			return col
 		}
 	}
-	panic(fmt.Sprintf("No ColumnMap in table %s type %s with field %s",
+	panic(fmt.Sprintf("No ColumnMap in table %s type %s with field %q",
 		t.TableName, t.gotype.Name(), field))
 }
 
